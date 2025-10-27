@@ -26,7 +26,7 @@ EMAIL_RECIPIENTS = os.getenv('EMAIL_RECIPIENTS', '').split(';')
 # Logging setup
 # ------------------------------
 logging.basicConfig(
-    filename='daily_report.log',
+    filename='../logs/daily_report.log',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )

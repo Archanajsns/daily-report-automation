@@ -1,0 +1,14 @@
+# Virtual environment
+.venv/
+
+# IDE settings
+.idea/
+
+# Cache
+__pycache__/
+
+# Logs
+logs/
+
+# Environment
+.env

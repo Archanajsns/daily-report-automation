@@ -1,8 +1,7 @@
 # daily_report_main.py
 
 from datetime import datetime
-import pandas as pd
-from config_utils import get_connection, run_query, send_email, EMAIL_RECIPIENTS, logging
+from src.config_utils import get_connection, run_query, send_email, EMAIL_RECIPIENTS, logging
 
 # ------------------------------
 # Build HTML report
