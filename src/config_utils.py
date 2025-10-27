@@ -37,10 +37,10 @@ logging.basicConfig(
 def get_connection():
     try:
         conn = psycopg2.connect(**DB_CONFIG)
-        logging.info("✅ Database connection successful")
+        logging.info(" Database connection successful")
         return conn
     except Exception as e:
-        logging.error(f"❌ Database connection failed: {e}")
+        logging.error(f" Database connection failed: {e}")
         raise
 
 # ------------------------------
@@ -51,7 +51,7 @@ def run_query(conn, query):
         logging.info(f"Running query:\n{query}")
         return pd.read_sql(query, conn)
     except Exception as e:
-        logging.error(f"❌ Error running query: {e}")
+        logging.error(f" Error running query: {e}")
         return pd.DataFrame()
 
 # ------------------------------
@@ -65,6 +65,6 @@ def send_email(subject, html_body, to_recipients):
         mail.Subject = subject
         mail.HTMLBody = html_body
         mail.Send()
-        logging.info("✅ Email sent successfully!")
+        logging.info(" Email sent successfully!")
     except Exception as e:
-        logging.error(f"❌ Error sending email: {e}")
+        logging.error(f" Error sending email: {e}")
