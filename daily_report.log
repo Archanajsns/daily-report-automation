@@ -1,0 +1,225 @@
+2025-10-27 10:18:22,691 - INFO - \u2705 Database connection successful
+2025-10-27 10:18:22,692 - INFO - Running section: No of Records Received
+2025-10-27 10:18:22,692 - INFO - Running query:
+
+                SELECT COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = CURRENT_DATE;
+            
+2025-10-27 10:18:26,172 - INFO - Running section: Status Report
+2025-10-27 10:18:26,172 - INFO - Running query:
+
+                SELECT status, charge_status, COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = CURRENT_DATE
+                GROUP BY status, charge_status
+                ORDER BY record_count DESC;
+            
+2025-10-27 10:18:29,189 - INFO - Running section: Charge Wise Report
+2025-10-27 10:18:29,189 - INFO - Running query:
+
+                SELECT charge_cd, status, COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = CURRENT_DATE
+                GROUP BY charge_cd, status
+                ORDER BY charge_cd;
+            
+2025-10-27 10:18:32,312 - INFO - Running section: Charge Codes with No Records
+2025-10-27 10:18:32,312 - INFO - Running query:
+
+                SELECT DISTINCT charge_cd
+                FROM (
+                    SELECT charge_cd
+                    FROM telikosgov.charge_config
+                    WHERE is_charge_enabled = 'true'
+                      AND product IN ('OCEAN', 'LNS', 'DUAL_CHARGE')
+                ) AS input_codes
+                WHERE charge_cd NOT IN (
+                    SELECT DISTINCT charge_cd
+                    FROM telikosgov.shipment_info
+                    WHERE CAST(datedon AS date) = CURRENT_DATE
+                );
+            
+2025-10-27 10:18:35,780 - INFO - Database connection closed.
+2025-10-27 10:18:43,392 - INFO - \u2705 Email sent successfully!
+2025-10-27 16:43:20,675 - INFO - \u2705 Database connection successful
+2025-10-27 16:43:20,675 - INFO - Running section: No of Records Received
+2025-10-27 16:43:20,676 - INFO - Running query:
+
+                SELECT COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = 24-10-2025;
+            
+2025-10-27 16:43:21,207 - ERROR - \u274c Error running query: Execution failed on sql '
+                SELECT COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = 24-10-2025;
+            ': operator does not exist: date = integer
+LINE 4:                 WHERE CAST(datedon AS date) = 24-10-2025;
+                                                    ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+2025-10-27 16:43:21,209 - INFO - Running section: Status Report
+2025-10-27 16:43:21,209 - INFO - Running query:
+
+                SELECT status, charge_status, COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = 24-10-2025
+                GROUP BY status, charge_status
+                ORDER BY record_count DESC;
+            
+2025-10-27 16:43:21,860 - ERROR - \u274c Error running query: Execution failed on sql '
+                SELECT status, charge_status, COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = 24-10-2025
+                GROUP BY status, charge_status
+                ORDER BY record_count DESC;
+            ': operator does not exist: date = integer
+LINE 4:                 WHERE CAST(datedon AS date) = 24-10-2025
+                                                    ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+2025-10-27 16:43:21,861 - INFO - Running section: Charge Wise Report
+2025-10-27 16:43:21,861 - INFO - Running query:
+
+                SELECT charge_cd, status, COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = 24-10-2025
+                GROUP BY charge_cd, status
+                ORDER BY charge_cd;
+            
+2025-10-27 16:43:22,436 - ERROR - \u274c Error running query: Execution failed on sql '
+                SELECT charge_cd, status, COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = 24-10-2025
+                GROUP BY charge_cd, status
+                ORDER BY charge_cd;
+            ': operator does not exist: date = integer
+LINE 4:                 WHERE CAST(datedon AS date) = 24-10-2025
+                                                    ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+2025-10-27 16:43:22,437 - INFO - Running section: Charge Codes with No Records
+2025-10-27 16:43:22,437 - INFO - Running query:
+
+                SELECT DISTINCT charge_cd
+                FROM (
+                    SELECT charge_cd
+                    FROM telikosgov.charge_config
+                    WHERE is_charge_enabled = 'true'
+                      AND product IN ('OCEAN', 'LNS', 'DUAL_CHARGE')
+                ) AS input_codes
+                WHERE charge_cd NOT IN (
+                    SELECT DISTINCT charge_cd
+                    FROM telikosgov.shipment_info
+                    WHERE CAST(datedon AS date) = 24-10-2025
+                );
+            
+2025-10-27 16:43:23,090 - ERROR - \u274c Error running query: Execution failed on sql '
+                SELECT DISTINCT charge_cd
+                FROM (
+                    SELECT charge_cd
+                    FROM telikosgov.charge_config
+                    WHERE is_charge_enabled = 'true'
+                      AND product IN ('OCEAN', 'LNS', 'DUAL_CHARGE')
+                ) AS input_codes
+                WHERE charge_cd NOT IN (
+                    SELECT DISTINCT charge_cd
+                    FROM telikosgov.shipment_info
+                    WHERE CAST(datedon AS date) = 24-10-2025
+                );
+            ': operator does not exist: date = integer
+LINE 12:                     WHERE CAST(datedon AS date) = 24-10-2025
+                                                         ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+2025-10-27 16:43:23,091 - INFO - Database connection closed.
+2025-10-27 16:43:30,812 - INFO - \u2705 Email sent successfully!
+2025-10-27 16:46:35,154 - INFO - \u2705 Database connection successful
+2025-10-27 16:46:35,155 - INFO - Running section: No of Records Received
+2025-10-27 16:46:35,156 - INFO - Running query:
+
+                SELECT COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = DATE '2025-10-24';
+            
+2025-10-27 16:46:38,479 - INFO - Running section: Status Report
+2025-10-27 16:46:38,479 - INFO - Running query:
+
+                SELECT status, charge_status, COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = DATE '2025-10-24'
+                GROUP BY status, charge_status
+                ORDER BY record_count DESC;
+            
+2025-10-27 16:46:41,747 - INFO - Running section: Charge Wise Report
+2025-10-27 16:46:41,748 - INFO - Running query:
+
+                SELECT charge_cd, status, COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = DATE '2025-10-24'
+                GROUP BY charge_cd, status
+                ORDER BY charge_cd;
+            
+2025-10-27 16:46:44,858 - INFO - Running section: Charge Codes with No Records
+2025-10-27 16:46:44,859 - INFO - Running query:
+
+                SELECT DISTINCT charge_cd
+                FROM (
+                    SELECT charge_cd
+                    FROM telikosgov.charge_config
+                    WHERE is_charge_enabled = 'true'
+                      AND product IN ('OCEAN', 'LNS', 'DUAL_CHARGE')
+                ) AS input_codes
+                WHERE charge_cd NOT IN (
+                    SELECT DISTINCT charge_cd
+                    FROM telikosgov.shipment_info
+                    WHERE CAST(datedon AS date) = DATE '2025-10-24'
+                );
+            
+2025-10-27 16:46:48,096 - INFO - Database connection closed.
+2025-10-27 16:46:52,393 - INFO - \u2705 Email sent successfully!
+2025-10-27 18:43:26,892 - INFO - \u2705 Database connection successful
+2025-10-27 18:43:26,892 - INFO - Running section: No of Records Received
+2025-10-27 18:43:26,893 - INFO - Running query:
+
+                SELECT COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = DATE '2025-10-27';
+            
+2025-10-27 18:43:30,584 - INFO - Running section: Status Report
+2025-10-27 18:43:30,584 - INFO - Running query:
+
+                SELECT status, charge_status, COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = DATE '2025-10-27'
+                GROUP BY status, charge_status
+                ORDER BY record_count DESC;
+            
+2025-10-27 18:43:33,996 - INFO - Running section: Charge Wise Report
+2025-10-27 18:43:33,996 - INFO - Running query:
+
+                SELECT charge_cd, status, COUNT(*) AS record_count
+                FROM telikosgov.shipment_info
+                WHERE CAST(datedon AS date) = DATE '2025-10-27'
+                GROUP BY charge_cd, status
+                ORDER BY charge_cd;
+            
+2025-10-27 18:43:37,320 - INFO - Running section: Charge Codes with No Records
+2025-10-27 18:43:37,321 - INFO - Running query:
+
+                SELECT DISTINCT charge_cd
+                FROM (
+                    SELECT charge_cd
+                    FROM telikosgov.charge_config
+                    WHERE is_charge_enabled = 'true'
+                      AND product IN ('OCEAN', 'LNS', 'DUAL_CHARGE')
+                ) AS input_codes
+                WHERE charge_cd NOT IN (
+                    SELECT DISTINCT charge_cd
+                    FROM telikosgov.shipment_info
+                    WHERE CAST(datedon AS date) = DATE '2025-10-27'
+                );
+            
+2025-10-27 18:43:40,856 - INFO - Database connection closed.
+2025-10-27 18:43:46,766 - INFO - \u2705 Email sent successfully!
